@@ -6,7 +6,7 @@ const path = require('path');
 // Express configuration
 
 app.use(express.json());
-app.use('/manual', express.static(path.join(__dirname, 'manual')));
+app.use('/manual', express.static(path.join(__dirname, 'manual/index.json')));
 
 // Authorization
 
@@ -26,20 +26,20 @@ app.use(['/keyfob'], authorization);
 
 // Login
 
-app.use('/login', function(req, res, next) {
-  req.rawBody = '';
-  req.on('data', function(chunk) {
-    req.rawBody += chunk;
-  });
+// app.use('/login', function(req, res, next) {
+//   req.rawBody = '';
+//   req.on('data', function(chunk) {
+//     req.rawBody += chunk;
+//   });
 
-  req.on('end', function() {
-    jwt.verify(req.rawBody, 'client_secret', function(err, decoded) {
-      err && console.log(err);
-      req.body = decoded;
-      next();
-    });
-  });
-});
+//   req.on('end', function() {
+//     jwt.verify(req.rawBody, 'client_secret', function(err, decoded) {
+//       err && console.log(err);
+//       req.body = decoded;
+//       next();
+//     });
+//   });
+// });
 
 app.post('/login', function (req, res) {
   console.log('POST /login received: ', req.body);
@@ -83,6 +83,11 @@ app.get('/keyfob', function(req, res) {
     res.set('Content-Type', 'application/json');
     res.send({ status: (Math.random() * 100 < 70) ? 'in_progress' : 'complete' });
   }, 2000);
+});
+
+app.get('/', function (req, res) {
+  console.log('GET / query: ');
+  res.json({ message: 'hooray! welcome to our api!' }); 
 });
 
 app.listen(3000, () => console.log('Server listening on port 3000!'));
