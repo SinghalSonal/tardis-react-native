@@ -7,7 +7,8 @@ import {
   Image,
   StyleSheet,
   TouchableHighlight,
-  View
+  View,
+  Alert
 } from 'react-native';
 
 type Props = {};
@@ -18,7 +19,7 @@ export default class KeyFob extends Component<Props> {
       <View style={styles.container}>
           <TouchableHighlight
             style={styles.button}
-            onPress={() => {}}
+          onPress={() => this.keyFob('LOCK')}
             disabled={false}
             underlayColor={'#b9ccee'}>
             <Image
@@ -28,7 +29,7 @@ export default class KeyFob extends Component<Props> {
           <View style={{ height: 88 }} />
           <TouchableHighlight
             style={styles.button}
-            onPress={() => {}}
+          onPress={() => this.keyFob('UNLOCK')}
             disabled={false}
             underlayColor={'#b9ccee'}>
             <Image
@@ -37,6 +38,28 @@ export default class KeyFob extends Component<Props> {
           </TouchableHighlight>
       </View>
     );
+  }
+
+  keyFob(typeName) {
+    console.log(typeName + " clicked");
+    fetch('http://192.168.0.7:3000/keyfob', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'access_token'
+      },
+      body: JSON.stringify({
+        type: typeName
+      }),
+    })
+      .then((response) => {
+        console.log(response);
+        Alert.alert('OK', typeName + ' post success');
+      })
+      .catch((error) => {
+        console.log(error);
+        Alert.alert('OK', typeName + ' post failure');
+      });
   }
 }
 
