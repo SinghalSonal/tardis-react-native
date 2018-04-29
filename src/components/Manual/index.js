@@ -28,7 +28,7 @@ constructor(props) {
 }
 
 componentDidMount() {
-  return fetch('http://192.168.0.11:3000/manual')
+  return fetch('http://192.168.0.7:3000/manual')
     .then((response) => response.json())
     .then((responseJson) => {
 
@@ -61,8 +61,9 @@ componentDidMount() {
           data={this.state.manualData}
           renderItem={({ item }) => 
             <View style={styles.container}>
-              <Image style={styles.image} source={{ uri: `./img/${item.image}` }} />
-              <Text>{item.title}, {item.description}</Text>
+              <Image style={styles.image} source={this.getSource(item.image)} />
+              <Text style={styles.parts}>{item.title}</Text>           
+              <Text> {item.description}</Text>
             </View>
           }
           keyExtractor={(item, index) => index}
@@ -70,7 +71,21 @@ componentDidMount() {
       </View>
     );
   }
+
+
+  getSource(imgName) {
+    if (imgName == "defense") {
+      return require('./img/defense.png');
+    } else if (imgName == "drive"){
+      return require('./img/drive.png');
+    } else if (imgName == "guidance") {
+      return require('./img/guidance.png');
+    } else {
+      return require('./img/navigation.png');
+    }
+  }
 }
+
 
 const styles = StyleSheet.create({
   button: {
@@ -88,9 +103,16 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#f5Fcff',
     flex: 1,
-    justifyContent: 'center',
+    justifyContent: 'center'
   },
   image: {
-    tintColor: '#5e81bc'
+    tintColor: '#5e81bc',
+    height: 30,
+    width: 30
+  },
+  parts: {
+    fontWeight: 'bold',
+    color: 'red',
+    flexDirection: 'row'
   }
 });

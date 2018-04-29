@@ -42,7 +42,7 @@ export default class KeyFob extends Component<Props> {
 
   keyFob(typeName) {
     console.log(typeName + " clicked");
-    fetch('http://192.168.0.11:3000/keyfob', {
+    fetch('http://192.168.0.7:3000/keyfob', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

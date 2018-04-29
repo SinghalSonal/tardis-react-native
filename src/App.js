@@ -59,7 +59,7 @@ export default class App extends Component<Props> {
             </Button>
             <Button style={styles.button} title="Manual" onPress={() => navigate('Manual')}>
             </Button>
-            <Button onPress={() => {this.resetAnimation();}} title="Animate">
+            <Button onPress={() => {this.resetAnimation();}} title="Animation">
             </Button>
           </View>
         </Loader>
