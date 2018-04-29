@@ -4,12 +4,12 @@ Congratulations! The Doctor<sup>1</sup> has chosen you as the next assistant. Th
 
 Your task as the assistant is to implement some features in React Native and at your disgression. Basically the Doctor realizes your a busy person and its up to you which features to start with and how much to complete. At the very least it would be appreciated if at least one feature in each column below is in a state of progress.
 
-| 1.     | 2.         |
-| ------ | ---------- |
-| KeyFob | Animations |
-| Login  | Native     |
-| Manual | Navigation |
-|        | TypeScript |
+| 1.     | 2.         | 3. Done    |
+| ------ | ---------- |------------|
+| KeyFob | Animations | KeyFob     |
+| Login  | Native     | Login      |
+| Manual | Navigation | Manual     |
+|        | TypeScript | Navigation |
 
 The implementation of the listed features will be described in more detail.
 
@@ -110,9 +110,9 @@ The request would look as follows:
 
 ```javascript
 {
-  url: 'http://localhost:3000/login',
-  method: 'POST',
-  body: '' // The JWT string
+    url: 'http://localhost:3000/login',
+    method: 'POST',
+    body: '' // The JWT string
 }
 ```
 

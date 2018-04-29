@@ -9,10 +9,13 @@ import {
   Text,
   TextInput,
   TouchableOpacity,
-  View
+  Button,
+  View,
+  Alert
 } from 'react-native';
 
 type Props = {};
+
 
 export default class Login extends Component<Props> {
   constructor(props) {
@@ -39,16 +42,45 @@ export default class Login extends Component<Props> {
           />
         </View>
         <View style={styles.rowContainer}>
-          <TouchableOpacity
+          <Button style={styles.submit} title="Submit" onPress={() => this.loginClick()}>
+            <Text>Submit</Text>
+          </Button>
+          {/* <TouchableOpacity
             style={styles.submit}
-            onPress={() => {}}
-            disabled={false}>
+            onPress={() => this.loginClick()}
+            disabled={false} >
             <Text style={styles.text}>Submit</Text>
-          </TouchableOpacity>
+          </TouchableOpacity> */}
         </View>
       </View>
     );
   }
+
+  loginClick(){
+    console.log("login clicked");
+    //this.props.navigation.navigate('KeyFob');
+    fetch('http://192.168.0.11:3000/login', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        client_id: 'client_id', 
+        username: this.state.username,
+        password: this.state.password
+      }),
+    })
+      .then((response) => {        
+        console.log(response);
+        Alert.alert('OK', 'Login sucess');
+        this.props.navigation.navigate('KeyFob');
+      })
+      .catch((error) => {
+        console.log(error);
+        Alert.alert('OK', 'Login failed');
+      });
+  }
+
 }
 
 const styles = StyleSheet.create({

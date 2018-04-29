@@ -1,0 +1,37 @@
+1) Install Angular Studio/ Marshmallow 6.0 SDK
+2) Angular Studio > 
+	a) Create new virtual device - uses marshmallow sdk
+ 	b) Open "android" folder for react app
+	c) run code with new virtual device
+3) Index.bundle error
+	a) create new folder "assets" in android/app/src/main/
+	b) Run command:
+	react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res
+4) Run AngularStudio project
+5) In main react app folder,
+	a) install dependencies with command
+		yarn install
+	b) run react-native with command
+		yarn android (or react-native run-android)
+6) See output in mobile / virtual device
+7) Add login button in home page
+8) Add navigation dependency
+	yarn add -W react-navigation
+9) Added StackNavigator in index.js
+10) Added login button in home page
+11) Update onPress function for submit button in login page to call login api
+12) updates in eslint rules for propTypes (supports navigation) and console.log
+13) to open android developer menu for debug and inspect, in android studio open terminal and run 
+	adb shell input keyevent 82
+14) debug in chrome, http://localhost:8081/debugger-ui.
+15) installed react-devtools for debug
+	yarn global add react-devtools
+16) run in terminal, react-devtools, to launch debug in devtool app
+	react-devtools
+17) Push notification need loads of updates- so cancelled. IF needed, all steps are at -https://github.com/zo0r/react-native-push-notification
+18) Animations, we can use react animations elements. But for ease we are using existing dependency
+	a) yarn add -w react-native-mask-loader
+ 		Added navigation code on App.js during intial load to see twitter bird before welcome screen but it DOES NOT WORK
+	b) yarn add -w react-native-animatable
+		will try this tomorrow
+ 
