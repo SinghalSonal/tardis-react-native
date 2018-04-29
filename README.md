@@ -110,9 +110,9 @@ The request would look as follows:
 
 ```javascript
 {
-    url: 'http://localhost:3000/login',
-    method: 'POST',
-    body: '' // The JWT string
+  url: 'http://localhost:3000/login',
+  method: 'POST',
+  body: '' // The JWT string
 }
 ```
 

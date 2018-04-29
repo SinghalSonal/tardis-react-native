@@ -59,7 +59,7 @@ export default class Login extends Component<Props> {
   loginClick(){
     console.log("login clicked");
     //this.props.navigation.navigate('KeyFob');
-    fetch('http://192.168.0.11:3000/login', {
+    fetch('http://192.168.0.7:3000/login', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

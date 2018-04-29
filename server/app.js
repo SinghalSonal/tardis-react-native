@@ -85,9 +85,4 @@ app.get('/keyfob', function(req, res) {
   }, 2000);
 });
 
-app.get('/', function (req, res) {
-  console.log('GET / query: ');
-  res.json({ message: 'hooray! welcome to our api!' }); 
-});
-
 app.listen(3000, () => console.log('Server listening on port 3000!'));
